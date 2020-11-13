@@ -1,0 +1,72 @@
+﻿@model Biblioteca_web.Models.UsuarioModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h3 class="text-center">Crear nuevo usuario</h3>
+<form method="post" asp-action="Create">
+    <div class="row px-2 mx-2 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <div class="col-10 offset-1 mt-4">
+            <!--Nombres-->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Nombres"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Nombres" class="form-control" />
+                    <span asp-validation-for="Nombres" class="text-danger"></span>
+                </div>
+            </div>
+            <!--Apellidos-->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Apellidos"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Apellidos" class="form-control" />
+                    <span asp-validation-for="Apellidos" class="text-danger"></span>
+                </div>
+            </div>
+            <!--Número de documento-->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="NumeroDocumento"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="NumeroDocumento" class="form-control" type="number" />
+                    <span asp-validation-for="NumeroDocumento" class="text-danger"></span>
+                </div>
+            </div>
+            <!--Dirección-->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Direccion"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Direccion" class="form-control" />
+                    <span asp-validation-for="Direccion" class="text-danger"></span>
+                </div>
+            </div>
+            <!--Email-->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Email"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    <partial name="_crearVolver" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

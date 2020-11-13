@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Biblioteca_web</RootNamespace>
+    <UserSecretsId>5a48daa4-da98-4439-8519-899664122f1d</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

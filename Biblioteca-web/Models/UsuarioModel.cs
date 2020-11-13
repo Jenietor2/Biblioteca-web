@@ -9,23 +9,26 @@ namespace Biblioteca_web.Models
     public class UsuarioModel
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [StringLength(80)]
         public string Nombres { get; set; }
-        [Required]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [StringLength(80)]
         public string Apellidos { get; set; }
-        [Required]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [StringLength(18)]
+        [Display(Name = "No documento")]
         public string NumeroDocumento { get; set; }
-        public DateTime FechaNacimiento { get; set; }
-        [Required]
+        
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [StringLength(80)]
         public string Direccion { get; set; }
-        [Required]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [StringLength(80)]
+        //[RegularExpression(@"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\b", ErrorMessage = "No es un correo valido")]
         public string Email { get; set; }
         public DateTime FechaCreacion { get; set; }
+        public int RolId { get; set; }
         public bool Activo { get; set; }
         public List<LibroModel> Libros { get; set; }
     }
