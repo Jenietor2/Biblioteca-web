@@ -27,6 +27,12 @@ namespace Biblioteca_web
             services.AddControllersWithViews();
             //services.AddHttpClient();
             //services.AddScoped<IUsuarioServicio, UsuarioServicio>();
+            services.AddDistributedMemoryCache(); //This way ASP.NET Core will use a Memory Cache to store session variables
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromHours(3); // It depends on user requirements.
+                //options.Cookie = ".My.Session"; // Give a cookie name for session which will be visible in request payloads.
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +48,7 @@ namespace Biblioteca_web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -53,7 +60,7 @@ namespace Biblioteca_web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Cuenta}/{action=Index}/{id?}");
             });
         }
     }

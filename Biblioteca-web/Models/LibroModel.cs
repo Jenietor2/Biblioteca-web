@@ -17,7 +17,7 @@ namespace Biblioteca_web.Models
         public bool Activo { get; set; } = true;
         public int GeneroId { get; set; }
         public GeneroModel Genero { get; set; }
-        public int UsuarioID { get; set; }
+        public string UsuarioID { get; set; }
         public UsuarioModel Usuario { get; set; }
         [Required]
         public string Ruta { get; set; }

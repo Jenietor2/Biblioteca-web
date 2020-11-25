@@ -10,27 +10,15 @@ using System.Threading.Tasks;
 
 namespace Biblioteca_web.Servicios
 {
-    public class UsuarioServicio : IUsuarioServicio
+    public class UsuarioServicio : ServicioBase
     {
-        private  HttpClient httClient;
-        //DEBUG
-        //private readonly string urlBase = "https://localhost:44380/api/";
-        //RELEASE
-        private readonly string urlBase = "https://localhost:443/api/";
-        public UsuarioServicio()
-        {
-            HttpClientHandler clientHandler = new HttpClientHandler();
-            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
-
-            httClient = new HttpClient(clientHandler);
-
-        }
+       
         public async Task<List<UsuarioModel>> GetUsuarios()
         {
             try
             {
                 string url = $"{urlBase}usuarios";
-                string response = await httClient.GetStringAsync(url);
+                string response = await this.httpClient.GetStringAsync(url);
                 List<UsuarioModel> lstUsuarios = JsonConvert.DeserializeObject<List<UsuarioModel>>(response);
                 return lstUsuarios;
             }
@@ -45,7 +33,7 @@ namespace Biblioteca_web.Servicios
         {
             try
             {
-                HttpResponseMessage response = await httClient.PostAsJsonAsync<UsuarioModel>($"{urlBase}usuarios", usuarioModel);
+                HttpResponseMessage response = await httpClient.PostAsJsonAsync<UsuarioModel>($"{urlBase}usuarios", usuarioModel);
                 return response;
             }
             catch (Exception ex)
@@ -60,7 +48,7 @@ namespace Biblioteca_web.Servicios
             try
             {
                 UsuarioModel usuarioModel = new UsuarioModel();
-                string usuarioApi = await httClient.GetStringAsync($"{urlBase}usuarios/{id}");
+                string usuarioApi = await httpClient.GetStringAsync($"{urlBase}usuarios/{id}");
                 usuarioModel = JsonConvert.DeserializeObject<UsuarioModel>(usuarioApi);
                 return usuarioModel;
             }
@@ -75,7 +63,7 @@ namespace Biblioteca_web.Servicios
         {
             try
             {
-                HttpResponseMessage response = await httClient.PutAsJsonAsync<UsuarioModel>($"{urlBase}usuarios/actualizar/{usuarioModel.Id}", usuarioModel);
+                HttpResponseMessage response = await httpClient.PutAsJsonAsync<UsuarioModel>($"{urlBase}usuarios/actualizar/{usuarioModel.Id}", usuarioModel);
                 return response;
             }
             catch (Exception ex)
@@ -84,5 +72,30 @@ namespace Biblioteca_web.Servicios
                 throw;
             }
         }
+
+        public async Task<HttpResponseMessage> DeleteUsuario(int id)
+        {
+            try
+            {
+                HttpResponseMessage response = new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
+
+                UsuarioModel usuarioModel = await GetUsuario(id);
+
+                if (usuarioModel == null)
+                {
+                    return response;
+                }
+
+                response = await httpClient.PutAsJsonAsync<UsuarioModel>($"{urlBase}usuarios/eliminar/{usuarioModel.Id}", usuarioModel);
+                return response;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+
     }
 }

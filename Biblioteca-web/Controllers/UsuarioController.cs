@@ -14,6 +14,7 @@ namespace Biblioteca_web.Controllers
     public class UsuarioController : Controller
     {
         private UsuarioServicio usuarioServicio;
+        private string rolName;
 
         public UsuarioController()
         {
@@ -21,6 +22,8 @@ namespace Biblioteca_web.Controllers
         }
         public IActionResult Index()
         {
+            
+           
             return View();
         }
         [HttpGet]
@@ -79,6 +82,23 @@ namespace Biblioteca_web.Controllers
                 }
             }
             return View(usuarioModel);
+        }
+        [HttpDelete]
+        public async Task<IActionResult>Delete(int id)
+        {
+            HttpResponseMessage response;
+            
+            if(ModelState.IsValid)
+            {
+                response = await usuarioServicio.DeleteUsuario(id);
+                
+                if(response.IsSuccessStatusCode)
+                {
+                    return Json(new { success = true, message = "Usuario borrado correctamente" });
+
+                }
+            }
+            return Json(new { success = false, message = "Error borrando usuario" });
         }
     }
 }

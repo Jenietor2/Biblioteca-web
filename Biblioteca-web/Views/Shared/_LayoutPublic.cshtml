@@ -22,17 +22,12 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        @if (ViewBag.rolName == "admin")
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Usuario" asp-action="Index">Usuarios</a>
-                            </li>
-                        }
-
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Libro" asp-action="Index">Libros</a>
+                            <a class="nav-link text-dark" asp-controller="Usuario" asp-action="Index">Ususarios</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Libros</a>
+                        </li>
                     </ul>
                 </div>
             </div>
