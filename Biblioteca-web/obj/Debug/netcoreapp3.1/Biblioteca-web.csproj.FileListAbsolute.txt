@@ -90,7 +90,6 @@ E:\UT\Seminario\Biblioteca-web\Biblioteca-web\bin\Debug\netcoreapp3.1\runtimes\w
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Biblioteca-web.csprojAssemblyReference.cache
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Biblioteca-web.AssemblyInfoInputs.cache
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Biblioteca-web.AssemblyInfo.cs
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Biblioteca-web.csproj.CoreCompileInputs.cache
@@ -100,6 +99,8 @@ E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Biblioteca
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Biblioteca-web.TagHelpers.input.cache
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Biblioteca-web.TagHelpers.output.cache
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Biblioteca-web.RazorCoreGenerate.cache
+E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Razor\Views\Comentario\Crear.cshtml.g.cs
+E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Razor\Views\Comentario\_crearVolver.cshtml.g.cs
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Razor\Views\Cuenta\Index.cshtml.g.cs
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Razor\Views\Genero\Crear.cshtml.g.cs
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Razor\Views\Genero\_crearVolver.cshtml.g.cs
@@ -128,3 +129,4 @@ E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\staticweba
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Biblioteca-web.dll
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Biblioteca-web.pdb
 E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Biblioteca-web.genruntimeconfig.cache
+E:\UT\Seminario\Biblioteca-web\Biblioteca-web\obj\Debug\netcoreapp3.1\Biblioteca-web.csprojAssemblyReference.cache

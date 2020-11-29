@@ -9,11 +9,12 @@ namespace Biblioteca_web.Models
     public class GeneroModel
     {
         public int Id { get; set; }
-        [Required]
-        [StringLength(40)]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        [StringLength(60)]
         public string Nombre { get; set; }
         public List<LibroModel> Libros { get; set; }
         public bool Activo { get; set; } = true;
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         public string Detalle { get; set; }
     }
 }

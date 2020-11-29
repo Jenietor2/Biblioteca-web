@@ -8,9 +8,10 @@ namespace Biblioteca_web.Models
 {
     public class UsuarioLoginModel
     {
-        [Required]
-        [StringLength(80)]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        [RegularExpression("^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$", ErrorMessage = "No es un correo valido")]
         public string Email { get; set; }
+        [Required (ErrorMessage = "El campo {0} es requerido")]
         public string Password { get; set; }
     }
 }

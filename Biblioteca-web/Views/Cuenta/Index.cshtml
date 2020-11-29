@@ -16,38 +16,71 @@
             @ViewBag.mensaje
         </div>
     }
-</div>
 
-    
+    <div class="form">
+        <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg" /></div>
 
+        <!--Crear Usuario-->
+        <form class="register-form" method="post" asp-action="Crear">
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+            </div>
+            <input type="text" placeholder="Nombres" asp-for="Usuario.Nombres" />
+            <span asp-validation-for="Usuario.Nombres" class="text-danger"></span>
+            <input type="text" placeholder="Apellidos" asp-for="Usuario.Apellidos" />
+            <span asp-validation-for="Usuario.Apellidos" class="text-danger"></span>
+            <input type="text" placeholder="No de documento" asp-for="Usuario.NumeroDocumento" />
+            <span asp-validation-for="Usuario.NumeroDocumento" class="text-danger"></span>
+            <input type="text" placeholder="Dirrección" asp-for="Usuario.Direccion" />
+            <span asp-validation-for="Usuario.Direccion" class="text-danger"></span>
+            <input type="email" placeholder="Correo eléctronico" asp-for="Usuario.Email" />
+            <span asp-validation-for="Usuario.Email" class="text-danger"></span>
+            <input type="password" placeholder="Contraseña" asp-for="Usuario.Password" />
+            <span asp-validation-for="Usuario.Password" class="text-danger"></span>
+            <button type="submit">Crear</button>
+            <p class="message">Ya estoy registrado &nbsp;<a href="#">Ingresar</a></p>
+        </form>
 
-<div class="form">
-    <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg" /></div>
+        <!--Login-->
+        <form class="login-form" method="post" asp-action="Login" id="form-login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="text" placeholder="Email" asp-for="UsuarioLogin.Email" id="usuarioLogin-email" />
+            <span class="text-danger" id="error-usuarioLogin-email" style="display:none; text-align:center;">
+                Este campo es requerido
+            </span>
+            <span asp-validation-for="UsuarioLogin.Email" class="text-danger"></span>
+            <input type="password" placeholder="password" asp-for="UsuarioLogin.Password" id="usuarioLogin-password"/>
+            <span class="text-danger" id="error-usuarioLogin-password" style="display:none; text-align:center;">
+                Este campo es requerido
+            </span>
+            <span asp-validation-for="UsuarioLogin.Password" class="text-danger"></span>
+            <button type="submit">Ingresar</button>
+            <p class="message">No estoy registrado&nbsp;<a href="#">Crear cuenta</a></p>
+        </form>
+    </div>
+    <video id="video" autoplay="autoplay" loop="loop" poster="polina.jpg">
+        <source src="http://andytran.me/A%20peaceful%20nature%20timelapse%20video.mp4" type="video/mp4" />
+    </video>
 
-    <!--Crear Usuario-->
-    <form class="register-form" method="post" asp-action="Crear">
-        <div asp-validation-summary="ModelOnly" class="text-danger">
-        </div>
-        <input type="text" placeholder="Nombres" asp-for="Usuario.Nombres" />
-        <input type="text" placeholder="Apellidos" asp-for="Usuario.Apellidos" />
-        <input type="text" placeholder="No de documento" asp-for="Usuario.NumeroDocumento" />
-        <input type="text" placeholder="Dirrección" asp-for="Usuario.Direccion" />
-        <input type="email" placeholder="Correo eléctronico" asp-for="Usuario.Email" />
-        <input type="password" placeholder="Contraseña" asp-for="Usuario.Password" />
-        <button type="submit">Crear</button>
-        <p class="message">Ya estoy registrado &nbsp;<a href="#">Ingresar</a></p>
-    </form>
+    @section scripts{ 
 
-    <!--Login-->
-    <form class="login-form" method="post" asp-action="Login">
-        <input type="text" placeholder="Email" asp-for="UsuarioLogin.Email" />
-        <input type="password" placeholder="password" asp-for="UsuarioLogin.Password" />
-        <button type="submit">Ingresar</button>
-        <p class="message">No estoy registrado&nbsp;<a href="#">Crear cuenta</a></p>
-    </form>
-</div>
-<video id="video" autoplay="autoplay" loop="loop" poster="polina.jpg">
-    <source src="http://andytran.me/A%20peaceful%20nature%20timelapse%20video.mp4" type="video/mp4" />
-</video>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#form-login").submit(function () {
+                    
+                    var email = $("#usuarioLogin-email").val();
+                    var password = $("#usuarioLogin-password").val();
 
+                    if ((email == null || email == undefined || email == "") || (password == null || password == undefined || password == "")) {
+                        $("#error-usuarioLogin-email").css("display", "block");
+                        $("#error-usuarioLogin-password").css("display", "block");
+                        return false;
+                    } else {
+                        $("#error-usuarioLogin-email").css("display", "none");
+                        $("#error-usuarioLogin-password").css("display", "none");
+                        return true;
+                    }
+                });
+            });
+        </script>
 
+    }

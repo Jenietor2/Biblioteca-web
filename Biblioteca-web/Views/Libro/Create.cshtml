@@ -15,7 +15,7 @@
 }
 
 <h3 class="text-center">Cargar libro</h3>
-<form method="post" asp-action="Create" enctype="multipart/form-data">
+<form method="post" asp-action="Create" enctype="multipart/form-data" id="form-create-book">
     <div class="row px-2 mx-2 border">
         <div asp-validation-summary="ModelOnly" class="text-danger">
         </div>
@@ -46,7 +46,10 @@
                     <label asp-for="Libro.Ruta"></label>
                 </div>
                 <div class="col-8">
-                    <input type="file" name="libro" id="loadBook" class="form-control" />
+                    <input type="file" name="libro" id="libro" onchange="loadBook(libro)" class="form-control" accept="application/pdf" />
+                    <span class="text-danger" id="error-size-file" style="display:none; text-align:center;">
+                        El tamaño del archivo no puede ser mayor a
+                    </span>
                 </div>
             </div>
             <!--Autor-->
@@ -68,8 +71,41 @@
     </div>
 </form>
 
-<script type="text/javascript">
-    var archivo = $('#loadBook').change();
-    console.log(archivo);
-</script>
+@section scripts{
+
+    <script type="text/javascript">
+        function loadBook(prmLibro) {
+            document.getElementById(prmLibro).value = document.getElementById(prmLibro).files.item(0).name;
+
+            $("#error-size-file").css("display", "none");
+            var sizeFile = document.getElementById(prmLibro).files[0].size;
+
+            if (sizeFile > 15000000) {
+
+                $("#error-size-file").css("display", "block");
+                document.getElementById(prmLibro).value = "";
+                var clon = document.getElementById(prmLibro).cloneNode(true);
+                clon.value = "";
+                document.getElementById(prmLibro).replaceWith(clon);
+            } else {
+                $("#error-size-file").css("display", "none");
+            }
+            
+        }
+
+        $(document).ready(function () {
+            $("#form-create-book").submit(function () {
+                var email = $("#usuarioLogin-email").val();
+                if (email == null || email == undefined || email == "") {
+                    $("#error-usuarioLogin-email").css("display", "block");
+                    return false;
+                } else {
+                    $("#error-usuarioLogin-email").css("display", "none");
+                    return true;
+                }
+            });
+        });
+    </script>
+
+}
 

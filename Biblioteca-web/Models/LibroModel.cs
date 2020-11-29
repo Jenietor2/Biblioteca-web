@@ -10,13 +10,15 @@ namespace Biblioteca_web.Models
     public class LibroModel
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         [StringLength(120)]
         public string Titulo { get; set; }
         public DateTime FechaCreacion { get; set; }
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         public string Autor { get; set; }
         public bool Activo { get; set; } = true;
         [Display(Name = "Genero")]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         public int GeneroId { get; set; }
         public GeneroModel Genero { get; set; }
         public string UsuarioID { get; set; }

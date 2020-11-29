@@ -13,12 +13,12 @@ function cargarDatatable() {
             "datatype": "json"
         },
         "columns": [
-            { "data": "titulo", "width": "50%" },
-            { "data": "autor", "width": "50%" },
-            { "data": "genero.nombre", "width": "50%" },
-            { "data": "usuario.nombres", "width": "50%" },
+            { "data": "titulo", "width": "20%" },
+            { "data": "autor", "width": "20%" },
+            { "data": "genero.nombre", "width": "20%" },
+            { "data": "usuario.nombres", "width": "20%" },
             {
-                "data": "ruta", "width": "50%", "render": function (data, type, row, meta) {
+                "data": "ruta", "width": "20%", "render": function (data, type, row, meta) {
                     if (type === 'display') {
                         data = '<a href="' + data + '" target="_blank"><i class="fas fa-download"></i></a>';
                     }
