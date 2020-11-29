@@ -14,5 +14,6 @@ namespace Biblioteca_web.Models
         public string Nombre { get; set; }
         public List<LibroModel> Libros { get; set; }
         public bool Activo { get; set; } = true;
+        public string Detalle { get; set; }
     }
 }

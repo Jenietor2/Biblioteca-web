@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,11 +16,12 @@ namespace Biblioteca_web.Models
         public DateTime FechaCreacion { get; set; }
         public string Autor { get; set; }
         public bool Activo { get; set; } = true;
+        [Display(Name = "Genero")]
         public int GeneroId { get; set; }
         public GeneroModel Genero { get; set; }
         public string UsuarioID { get; set; }
         public UsuarioModel Usuario { get; set; }
-        [Required]
         public string Ruta { get; set; }
+        public IFormFileCollection Libro { get; set; }
     }
 }

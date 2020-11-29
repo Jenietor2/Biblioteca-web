@@ -46,5 +46,27 @@ namespace Biblioteca_web.Servicios
                 throw;
             }
         }
+
+        public async Task<string> CrearUsuario(UsuarioModel usuarioModel)
+        {
+            try
+            {
+                HttpResponseMessage respuesta = await httpClient.PostAsJsonAsync<UsuarioModel>($"{urlBase}cuentas/crear", usuarioModel);
+                
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    string userTokeSerialice = respuesta.Content.ReadAsStringAsync().Result;
+                    UserTokenModel userToken = JsonConvert.DeserializeObject<UserTokenModel>(userTokeSerialice);
+
+                    return userTokeSerialice;
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

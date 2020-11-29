@@ -3,42 +3,51 @@
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_Public.cshtml";
 }
-
-
-
-
-    <div class="container">
-        <div class="info">
-            <h1><small>Blibioteca</small> Ogham</h1><span>
-                Hecho por el <i class="fa fa-heart"></i>
-                cipa <strong>4</strong>
-            </span>
+<div class="container">
+    <div class="info">
+        <h1><small>Blibioteca</small> Ogham</h1><span>
+            Hecho por el <i class="fa fa-heart"></i>
+            cipa <strong>4</strong>
+        </span>
+    </div>
+    @if (!string.IsNullOrEmpty(@ViewBag.mensaje))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.mensaje
         </div>
-    </div>
-    <div class="form">
-        <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg" /></div>
+    }
+</div>
 
-        <!--Crear Usuario-->
-        <form class="register-form" method="post" asp-action="Crear">
-            <div asp-validation-summary="ModelOnly" class="text-danger">
-            </div>
-            <input type="text" placeholder="name" asp-for="Usuario.Nombres" />
-            <input type="password" placeholder="password" asp-for="Usuario.Password" />
-            <input type="text" placeholder="email address" />
-            <button type="submit">Crear</button>
-            <p class="message">Already registered?<a href="#">Ingresar</a></p>
-        </form>
+    
 
-        <!--Login-->
-        <form class="login-form" method="post" asp-action="Login">
-            <input type="text" placeholder="Email" asp-for="UsuarioLogin.Email" />
-            <input type="password" placeholder="password" asp-for="UsuarioLogin.Password" />
-            <button type="submit">Ingresar</button>
-            <p class="message">Not registered?<a href="#">Create an account</a></p>
-        </form>
-    </div>
-    <video id="video" autoplay="autoplay" loop="loop" poster="polina.jpg">
-        <source src="http://andytran.me/A%20peaceful%20nature%20timelapse%20video.mp4" type="video/mp4" />
-    </video>
 
-   
+<div class="form">
+    <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg" /></div>
+
+    <!--Crear Usuario-->
+    <form class="register-form" method="post" asp-action="Crear">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <input type="text" placeholder="Nombres" asp-for="Usuario.Nombres" />
+        <input type="text" placeholder="Apellidos" asp-for="Usuario.Apellidos" />
+        <input type="text" placeholder="No de documento" asp-for="Usuario.NumeroDocumento" />
+        <input type="text" placeholder="Dirrección" asp-for="Usuario.Direccion" />
+        <input type="email" placeholder="Correo eléctronico" asp-for="Usuario.Email" />
+        <input type="password" placeholder="Contraseña" asp-for="Usuario.Password" />
+        <button type="submit">Crear</button>
+        <p class="message">Ya estoy registrado &nbsp;<a href="#">Ingresar</a></p>
+    </form>
+
+    <!--Login-->
+    <form class="login-form" method="post" asp-action="Login">
+        <input type="text" placeholder="Email" asp-for="UsuarioLogin.Email" />
+        <input type="password" placeholder="password" asp-for="UsuarioLogin.Password" />
+        <button type="submit">Ingresar</button>
+        <p class="message">No estoy registrado&nbsp;<a href="#">Crear cuenta</a></p>
+    </form>
+</div>
+<video id="video" autoplay="autoplay" loop="loop" poster="polina.jpg">
+    <source src="http://andytran.me/A%20peaceful%20nature%20timelapse%20video.mp4" type="video/mp4" />
+</video>
+
+

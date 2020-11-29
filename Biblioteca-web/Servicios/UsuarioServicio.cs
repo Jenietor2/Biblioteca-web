@@ -43,7 +43,7 @@ namespace Biblioteca_web.Servicios
             
         }
 
-        public async Task<UsuarioModel> GetUsuario(int id)
+        public async Task<UsuarioModel> GetUsuario(string id)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace Biblioteca_web.Servicios
             }
         }
 
-        public async Task<HttpResponseMessage> DeleteUsuario(int id)
+        public async Task<HttpResponseMessage> DeleteUsuario(string id)
         {
             try
             {

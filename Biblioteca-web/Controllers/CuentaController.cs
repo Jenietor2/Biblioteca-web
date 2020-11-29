@@ -24,17 +24,43 @@ namespace Biblioteca_web.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(UsuarioFullModel usuarioFullModel)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-               var userToken = await cuentaServicio.Login(usuarioFullModel.UsuarioLogin);
+                var userToken = await cuentaServicio.Login(usuarioFullModel.UsuarioLogin);
 
-                HttpContext.Session.SetString("userToken", userToken);
+                if (!string.IsNullOrEmpty(userToken))
+                {
+                    HttpContext.Session.SetString("userToken", userToken);
+
+                    return RedirectToAction("Index", "Libro");
+                }
+            }
+            ViewBag.mensaje = "El usuario o la contraseña no son validos";
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Crear(UsuarioFullModel usuarioFullModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var userToken = await cuentaServicio.CrearUsuario(usuarioFullModel.Usuario);
 
                 if (userToken != null)
                 {
-                   return RedirectToAction("Index", "Libro");
+                    HttpContext.Session.Remove("userToken");
+                    HttpContext.Session.SetString("userToken", userToken);
+                    return RedirectToAction("Index", "Libro");
                 }
             }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Cerrar()
+        {
+            HttpContext.Session.Remove("userToken");
+
             return RedirectToAction(nameof(Index));
         }
     }

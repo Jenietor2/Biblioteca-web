@@ -1,0 +1,53 @@
+﻿@model Biblioteca_web.Models.GeneroModel
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+@if (!string.IsNullOrEmpty(@ViewBag.message))
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.message
+    </div>
+}
+
+<h3 class="text-center">Crear genero</h3>
+<form method="post" asp-action="Crear">
+    <div class="row px-2 mx-2 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <div class="col-10 offset-1 mt-4">
+            
+            <!--Nombre-->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Nombre"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+            </div>
+            <!--Detalle-->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Detalle"></label>
+                </div>
+                <div class="col-8">
+                    <textarea asp-for="Detalle" class="form-control"></textarea>
+                    <span asp-validation-for="Detalle" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    <partial name="_crearVolver.cshtml" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

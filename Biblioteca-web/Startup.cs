@@ -25,6 +25,7 @@ namespace Biblioteca_web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             //services.AddHttpClient();
             //services.AddScoped<IUsuarioServicio, UsuarioServicio>();
             services.AddDistributedMemoryCache(); //This way ASP.NET Core will use a Memory Cache to store session variables

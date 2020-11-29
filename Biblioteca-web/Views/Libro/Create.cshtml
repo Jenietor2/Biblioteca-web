@@ -6,13 +6,21 @@
 
 <br />
 <br />
+
+@if (!string.IsNullOrEmpty(@ViewBag.message))
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.message
+    </div>
+}
+
 <h3 class="text-center">Cargar libro</h3>
 <form method="post" asp-action="Create" enctype="multipart/form-data">
     <div class="row px-2 mx-2 border">
         <div asp-validation-summary="ModelOnly" class="text-danger">
         </div>
         <div class="col-10 offset-1 mt-4">
-            <input type="hidden" asp-for="Libro.UsuarioID"/>
+            <input type="hidden" asp-for="Libro.UsuarioID" />
             <!--Titulo-->
             <div class="form-group row">
                 <div class="col-4">
@@ -29,7 +37,7 @@
                     <label asp-for="Libro.GeneroId"></label>
                 </div>
                 <div class="col-8">
-                    @Html.DropDownListFor(x => x.Libro.GeneroId, Model.ListGeneros, "Seleccione...", new { @class="form-control"})
+                    @Html.DropDownListFor(x => x.Libro.GeneroId, Model.ListGeneros, "Seleccione...", new { @class = "form-control" })
                 </div>
             </div>
             <!--Libro-->
@@ -38,10 +46,19 @@
                     <label asp-for="Libro.Ruta"></label>
                 </div>
                 <div class="col-8">
-                    <input type="file" name="libro" id="loadBook" class="form-control"/>
+                    <input type="file" name="libro" id="loadBook" class="form-control" />
                 </div>
             </div>
-           
+            <!--Autor-->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Libro.Autor"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Libro.Autor" class="form-control" />
+                    <span asp-validation-for="Libro.Autor" class="text-danger"></span>
+                </div>
+            </div>
             <div class="form-group row">
                 <div class="col-8 offset-4">
                     <partial name="_crearVolver" />
@@ -50,4 +67,9 @@
         </div>
     </div>
 </form>
+
+<script type="text/javascript">
+    var archivo = $('#loadBook').change();
+    console.log(archivo);
+</script>
 

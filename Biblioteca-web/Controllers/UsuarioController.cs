@@ -3,6 +3,7 @@ using Biblioteca_web.Servicios;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,6 @@ namespace Biblioteca_web.Controllers
         }
         public IActionResult Index()
         {
-            
-           
             return View();
         }
         [HttpGet]
@@ -47,7 +46,7 @@ namespace Biblioteca_web.Controllers
             {
                 response = await usuarioServicio.InsertarUsuario(usuarioModel);
 
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction(nameof(Index));
                 }
@@ -55,11 +54,18 @@ namespace Biblioteca_web.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<IActionResult>Edit(int id)
+        public async Task<IActionResult> Edit()
         {
-            UsuarioModel usuarioModel = await usuarioServicio.GetUsuario(id);
+            UsuarioModel usuarioModel = null;
+            var user = HttpContext.Session.GetString("userToken");
 
-            if(usuarioModel == null)
+            if (!string.IsNullOrEmpty(user))
+            {
+                UserTokenModel userToken = JsonConvert.DeserializeObject<UserTokenModel>(user);
+                usuarioModel = await usuarioServicio.GetUsuario(userToken.UsuarioId);
+            }
+
+            if (usuarioModel == null)
             {
                 return NotFound();
             }
@@ -74,28 +80,32 @@ namespace Biblioteca_web.Controllers
 
             if (ModelState.IsValid)
             {
-                response = await usuarioServicio.UpdateUsuario(usuarioModel);    
+                response = await usuarioServicio.UpdateUsuario(usuarioModel);
 
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Index", "Libro");
                 }
             }
             return View(usuarioModel);
         }
         [HttpDelete]
-        public async Task<IActionResult>Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
-            HttpResponseMessage response;
-            
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                response = await usuarioServicio.DeleteUsuario(id);
-                
-                if(response.IsSuccessStatusCode)
-                {
-                    return Json(new { success = true, message = "Usuario borrado correctamente" });
+                HttpResponseMessage response;
+                var user = HttpContext.Session.GetString("userToken");
 
+                if (string.IsNullOrEmpty(user))
+                {
+                    UserTokenModel userToken = JsonConvert.DeserializeObject<UserTokenModel>(user);
+                    response = await usuarioServicio.DeleteUsuario(userToken.UsuarioId);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return Json(new { success = true, message = "Usuario borrado correctamente" });
+                    }
                 }
             }
             return Json(new { success = false, message = "Error borrando usuario" });
